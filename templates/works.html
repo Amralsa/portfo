@@ -2,16 +2,14 @@
 {% block site_title %}My Projects{% endblock site_title %}
 {% block nav %}{% include './nav.html' %}{% endblock nav %}
 {% block content %}
-<div class="hero-full-container background-image-container white-text-container" style="background-image: url('./static/assets/images/python.jpg')">
     <div class="section-container">
         <div class="container">
             <div class="row">
 <!--                changed box size from 8-9-->
-                <div class="col-sm-9 col-sm-offset-2 section-container-spacer">
+                <div class="col-sm-8 col-sm-offset-2 section-container-spacer">
                     <div class="text-center">
                         <h1 class="h2">My Projects</h1>
-                        <p>Password Security Strength Examaniation! In the "password" field, you can go ahead and check if your password has been breached!This test will tell you the number of times someone has figured out your password! </p>
-
+                        <p>Password Security Strength Examaniation! In the "password" field, you can go ahead and check if your password has been breached!This test will tell you the number of times someone has figured out your password!</p>
                     </div>
                 </div>
                 <div class="section-container">
@@ -40,5 +38,4 @@ Enter it: <input type="number" minlength="1" id= "hi" name="guesser" min="1" max
                                                             <button type="submit"  id= "hime" value="Submit">Guess Me</button>
                                                             </form>
                                                             </div>
-</div>
 {% endblock content %}
