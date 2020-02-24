@@ -1,3 +1,4 @@
+import random
 import requests
 import hashlib
 from flask import Flask, render_template, request, redirect
@@ -19,7 +20,7 @@ def get_password_leaks_count(hashes, hash_to_check):
             return count
     return
 
-def pwned_api_check(password):
+def pwned_api_check(password): #here is where most of the action occurs
     sha1password = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
     first5_char, tail = sha1password[:5], sha1password[5:]
     response = request_api_data(first5_char)
@@ -31,7 +32,6 @@ def main(password):
         else:
             return(f'{password} was NOT found. Carry on!')
     # return 'done!'
-
 @app.route('/')
 def my_home():
     return render_template("index.html")
@@ -39,7 +39,8 @@ def my_home():
 @app.route('/<string:page_name>')
 def html_page(page_name):
     return render_template(page_name)
-def write_to_csv(data):
+
+def write_to_csv(data): #This func used to send data to csv file
     with open('database.csv', mode='a') as database:
         email = data["email"]
         subject = data["subject"]
@@ -48,7 +49,7 @@ def write_to_csv(data):
         csv_writer.writerow([email,subject,message])
 
 @app.route('/submit_form', methods= ['POST', "GET"])
-def submit_form():
+def submit_form(): #this func will redirect and returns something if anything occurs
     if request.method == 'POST':
         try:
             data = request.form.to_dict()
@@ -73,12 +74,10 @@ def passwords():
         except:
             return "Something Went Wrong!"
 
-
 #game time
-import random
 
 
-def guess_me(guess):
+def guess_me(guess): # this is the guessing game
     answer = random.randint(1, 10)
     if int(guess) == answer:
         return "Well done! Take a rest, you deserve it!"
